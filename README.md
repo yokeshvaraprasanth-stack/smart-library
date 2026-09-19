@@ -26,6 +26,23 @@ Then open `http://localhost:5173`. The API runs at `http://localhost:5000`.
 Copy `backend/.env.example` to `backend/.env` and set `MONGO_URI` and a strong
 `JWT_SECRET` before using database-backed features.
 
+## Vercel deployment
+
+The repository includes a Vercel serverless entry at `api/index.js`, so the
+frontend and API can deploy together. In Vercel Project Settings, add these
+environment variables for the Production environment:
+
+```env
+MONGO_URI=mongodb+srv://...
+JWT_SECRET=replace_with_a_long_random_secret
+CLIENT_URL=https://your-project.vercel.app
+```
+
+Leave `VITE_API_URL` unset for the combined deployment. The frontend will use
+the same-origin `/api` path in production and `http://localhost:5000/api`
+during local development. MongoDB Atlas must allow Vercel connections in its
+Network Access settings.
+
 ## Project structure
 
 ```

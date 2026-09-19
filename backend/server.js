@@ -38,6 +38,10 @@ app.use('/api/reservations', reservationRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-connectDB().finally(() => {
-  app.listen(port, () => console.log(`LibraSmart API listening on http://localhost:${port}`));
-});
+if (require.main === module) {
+  connectDB().finally(() => {
+    app.listen(port, () => console.log(`LibraSmart API listening on http://localhost:${port}`));
+  });
+}
+
+module.exports = { app, connectDB };
