@@ -95,6 +95,7 @@ function getAuthErrorMessage(message: string, fallback: string): string {
   if (normalized.includes('email not confirmed')) return 'Please verify your email before signing in.';
   if (normalized.includes('already registered') || normalized.includes('already exists')) return 'An account with this email already exists.';
   if (normalized.includes('password')) return 'Password must meet the required security rules.';
+  if (normalized.includes('database') || normalized.includes('mongo')) return 'The library database is not configured on the deployed server. Add MONGO_URI in Vercel and redeploy.';
   if (normalized.includes('fetch') || normalized.includes('network') || normalized.includes('connect')) return 'Unable to connect. Please check your internet connection.';
   return fallback;
 }
